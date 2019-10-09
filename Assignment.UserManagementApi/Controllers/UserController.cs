@@ -45,7 +45,6 @@ namespace Assignment.UserManagementApi.Controllers
         }
 
         // PUT api/user/edit
-        [AllowAnonymous]
         [Authorize]
         [HttpPut("edit")]
         public async Task<IActionResult> Update(User user)
