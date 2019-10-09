@@ -38,9 +38,9 @@ namespace Assignment.UserManagementApi.Controllers
                 var result = await _userService.AddUser(user);
                 return Ok(result);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                return Ok(ex);
+                return Ok(e);
             }
         }
 
@@ -63,9 +63,9 @@ namespace Assignment.UserManagementApi.Controllers
         // POST api/user/authenticate
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public async Task<IActionResult> Authenticate(LoginRequest data)
+        public async Task<IActionResult> Authenticate(Login login)
         {
-            var user = await _userService.Authenticate(data.Email, data.Password);
+            var user = await _userService.Authenticate(login.Email, login.Password);
 
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
@@ -73,7 +73,7 @@ namespace Assignment.UserManagementApi.Controllers
             return Ok(user);
         }
 
-        public class LoginRequest
+        public class Login
         {
             public string Email { get; set; }
             public string Password { get; set; }

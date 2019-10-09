@@ -18,24 +18,17 @@ namespace Assignment.UserData.Reposistories
         }
         public async Task<TEntity> Get(int id)
         {
-            return await Context.Set<TEntity>().FindAsync(id).ConfigureAwait(false);
+            return await Context.Set<TEntity>().FindAsync(id);
         }
 
         public async Task<IEnumerable<TEntity>> GetAll()
         {
-            return await Context.Set<TEntity>().ToListAsync().ConfigureAwait(false);
+            return await Context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> expression)
         {
-            try
-            {
-                return await Context.Set<TEntity>().Where(predicate).ToListAsync().ConfigureAwait(false);
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
+            return await Context.Set<TEntity>().Where(expression).ToListAsync();
         }
 
         public void Add(TEntity entity)

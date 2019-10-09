@@ -21,13 +21,13 @@ namespace Assignment.Business.Services
         public async Task<User> AddUser(User user)
         {
             _unitOfWork.UserRepository.Add(user);
-            await _unitOfWork.SaveChanges().ConfigureAwait(false);
+            await _unitOfWork.SaveChanges();
             return user;
         }
 
         public async Task<User> UpdateUser(User user)
         {
-            var currentMember = await _unitOfWork.UserRepository.Get(user.Id).ConfigureAwait(false);
+            var currentMember = await _unitOfWork.UserRepository.Get(user.Id);
             currentMember.Name = user.Name;
             currentMember.MobileNumber = user.MobileNumber;
             currentMember.Gender = user.Gender;

@@ -10,7 +10,7 @@ namespace Assignment.UserData.Reposistories
     {
         Task<TEntity> Get(int id);
         Task<IEnumerable<TEntity>> GetAll();
-        Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate);
+        Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> expression);
 
         void Add(TEntity entity);
     }
