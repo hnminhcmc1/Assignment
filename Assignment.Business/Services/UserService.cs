@@ -83,7 +83,9 @@ namespace Assignment.Business.Services
 
         public async Task<User> GetUserById(int id)
         {
-            return await _unitOfWork.UserRepository.Get(id);
+            var currentUser = await _unitOfWork.UserRepository.Get(id);
+            currentUser.Password = null;
+            return currentUser;
         }
     }
 }
