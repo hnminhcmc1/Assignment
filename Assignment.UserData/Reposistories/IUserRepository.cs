@@ -8,6 +8,6 @@ namespace Assignment.UserData.Reposistories
 {
     public interface IUserRepository : IRepository<User>
     {
-        Task<User> FindByEmail(string email);
+        Task<User> FindByEmailAndPassword(string email, string password);
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Assignment.Business.Services
 {
-    public class UserService:IUserService
+    public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -39,41 +39,35 @@ namespace Assignment.Business.Services
 
         public async Task<User> Authenticate(string email, string password)
         {
-            var member = await _unitOfWork.UserRepository.FindByEmail(email);
+            var member = await _unitOfWork.UserRepository.FindByEmailAndPassword(email, password);
 
             if (member == null)
                 return null;
-
-            if (member.Password == password)
+            // Generate jwt token
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("THIS_IS_JWT_SECRET_KEY");
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
-                // Generate jwt token
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes("THIS_IS_JWT_SECRET_KEY");
-                var tokenDescriptor = new SecurityTokenDescriptor
+                Subject = new ClaimsIdentity(new Claim[]
                 {
-                    Subject = new ClaimsIdentity(new Claim[]
-                    {
                         new Claim(ClaimTypes.Email, member.Email)
-                    }),
-                    Expires = DateTime.UtcNow.AddDays(7),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                };
-                try
-                {
-                    var token = tokenHandler.CreateToken(tokenDescriptor);
-                    member.Token = tokenHandler.WriteToken(token);
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            try
+            {
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                member.Token = tokenHandler.WriteToken(token);
 
-                    // Remove password before returning
-                    member.Password = null;
-                    return member;
-                }
-                catch (Exception e)
-                {
-                    throw;
-                }
+                // Remove password before returning
+                member.Password = null;
+                return member;
             }
-
-            return null;
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
         public async Task<IEnumerable<User>> GetAll()

@@ -15,9 +15,9 @@ namespace Assignment.UserData.Reposistories
         {
         }
 
-        public async Task<User> FindByEmail(string email)
+        public async Task<User> FindByEmailAndPassword(string email,string password)
         {
-            return (await Find(s => s.Email == email)).SingleOrDefault();
+            return (await Find(s => s.Email == email && s.Password == password)).SingleOrDefault();
         }
     }
 }
