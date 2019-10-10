@@ -72,6 +72,15 @@ namespace Assignment.UserManagementApi.Controllers
             return Ok(user);
         }
 
+        //GET api/user/id
+        [HttpGet("{id}")]
+        [Authorize]
+        public async Task<ActionResult<User>> GetUserById(int id)
+        {
+            var currentUser = await _userService.GetUserById(id);
+            return new ActionResult<User>(currentUser);
+        }
+
         public class Login
         {
             public string Email { get; set; }

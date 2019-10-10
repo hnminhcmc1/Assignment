@@ -78,9 +78,12 @@ namespace Assignment.Business.Services
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            var users = await _unitOfWork.UserRepository.GetAll();
-            return users;
+            return await _unitOfWork.UserRepository.GetAll();
         }
 
+        public async Task<User> GetUserById(int id)
+        {
+            return await _unitOfWork.UserRepository.Get(id);
+        }
     }
 }
