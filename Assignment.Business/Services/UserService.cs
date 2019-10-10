@@ -33,7 +33,7 @@ namespace Assignment.Business.Services
             currentMember.Gender = user.Gender;
             currentMember.Dob = user.Dob;
             currentMember.EmailOptIn = user.EmailOptIn;
-            await _unitOfWork.SaveChanges().ConfigureAwait(false);
+            await _unitOfWork.SaveChanges();
             return currentMember;
         }
 
