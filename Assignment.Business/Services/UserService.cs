@@ -30,9 +30,9 @@ namespace Assignment.Business.Services
             return user;
         }
 
-        public bool ExistUser(string email, string name)
+        public bool ExistUser(string name)
         {
-            return _unitOfWork.UserRepository.CheckExistUser(email, name);
+            return _unitOfWork.UserRepository.CheckExistUser(name);
         }
 
         public async Task<User> UpdateUser(User user)

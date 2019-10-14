@@ -23,9 +23,9 @@ namespace Assignment.UserData.Reposistories
             return await _userDbContext.Users.SingleOrDefaultAsync(s => s.Email == email && s.Password == password);
         }
 
-        public bool CheckExistUser(string email,string name)
+        public bool CheckExistUser(string name)
         {
-            return _userDbContext.Users.Any(s => s.Email == email || s.Name == name);
+            return _userDbContext.Users.Any(s => s.Name == name);
         }
     }
 }

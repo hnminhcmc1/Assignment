@@ -27,10 +27,10 @@ namespace Assignment.UserManagementApi.Controllers
         {
             try
             {
-                var existUser = _userService.ExistUser(user.Email, user.Name);
+                var existUser = _userService.ExistUser(user.Name);
                 if (existUser)
                 {
-                    return BadRequest(new { message = "Email or Name is exist!" });
+                    return BadRequest(new { message = "Name is exist!" });
                 }
                 var result = await _userService.AddUser(user);
                 return Ok(result);
@@ -48,10 +48,10 @@ namespace Assignment.UserManagementApi.Controllers
         {
             try
             {
-                var existUser = _userService.ExistUser(user.Email, user.Name);
+                var existUser = _userService.ExistUser(user.Name);
                 if (existUser)
                 {
-                    return BadRequest(new { message = "Email or Name is exist!" });
+                    return BadRequest(new { message = "Name is exist!" });
                 }
                 var result = await _userService.UpdateUser(user);
                 return Ok(result);

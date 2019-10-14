@@ -9,6 +9,6 @@ namespace Assignment.UserData.Interfaces
     public interface IUserRepository : IRepository<User>
     {
         Task<User> FindByEmailAndPassword(string email, string password);
-        bool CheckExistUser(string email, string name);
+        bool CheckExistUser(string name);
     }
 }
