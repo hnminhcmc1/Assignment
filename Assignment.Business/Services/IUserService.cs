@@ -11,7 +11,7 @@ namespace Assignment.Business.Services
         Task<User> AddUser(User user);
         Task<User> UpdateUser(User user);
         Task<User> Authenticate(string email, string password);
-        Task<IEnumerable<User>> GetAll();
         Task<User> GetUserById(int id);
+        bool ExistUser(string email, string password);
     }
 }

@@ -8,6 +8,6 @@ namespace Assignment.UserData.Reposistories
     public interface IUnitOfWork : IDisposable
     {
         Task<int> SaveChanges();
-        IUserRepository UserRepository { get; }
+        UserRepository UserRepository { get; }
     }
 }

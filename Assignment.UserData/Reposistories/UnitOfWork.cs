@@ -9,7 +9,7 @@ namespace Assignment.UserData.Reposistories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly UserDbContext _context;
-        private IUserRepository _userRepository;
+        private UserRepository _userRepository;
         public UnitOfWork(UserDbContext dbContext)
         {
             _context = dbContext;
@@ -22,17 +22,10 @@ namespace Assignment.UserData.Reposistories
 
         public async Task<int> SaveChanges()
         {
-            try
-            {
-                return await _context.SaveChangesAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return await _context.SaveChangesAsync();
         }
 
-        public IUserRepository UserRepository
+        public UserRepository UserRepository
         {
             get
             {

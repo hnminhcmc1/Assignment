@@ -20,14 +20,6 @@ namespace Assignment.UserManagementApi.Controllers
         {
             _userService = userService;
         }
-        // GET api/user
-        [HttpGet]
-        [Authorize]
-        public async Task<ActionResult<IEnumerable<User>>> Get()
-        {
-            var user = await _userService.GetAll();
-            return new ActionResult<IEnumerable<User>>(user);
-        }
         // POST api/user/register
         [AllowAnonymous]
         [HttpPost("register")]
@@ -35,6 +27,11 @@ namespace Assignment.UserManagementApi.Controllers
         {
             try
             {
+                var existUser = _userService.ExistUser(user.Email, user.Name);
+                if (existUser)
+                {
+                    return BadRequest(new { message = "Email or Name is exist!" });
+                }
                 var result = await _userService.AddUser(user);
                 return Ok(result);
             }

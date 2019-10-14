@@ -25,6 +25,11 @@ namespace Assignment.Business.Services
             return user;
         }
 
+        public bool ExistUser(string email, string name)
+        {
+            return _unitOfWork.UserRepository.CheckExistUser(email, name);
+        }
+
         public async Task<User> UpdateUser(User user)
         {
             var currentMember = await _unitOfWork.UserRepository.Get(user.Id);
@@ -40,39 +45,23 @@ namespace Assignment.Business.Services
         public async Task<User> Authenticate(string email, string password)
         {
             var member = await _unitOfWork.UserRepository.FindByEmailAndPassword(email, password);
-
             if (member == null)
                 return null;
-            // Generate jwt token
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("THIS_IS_JWT_SECRET_KEY");
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                        new Claim(ClaimTypes.Email, member.Email)
+                    new Claim(ClaimTypes.Email, member.Email)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
-            try
-            {
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                member.Token = tokenHandler.WriteToken(token);
-
-                // Remove password before returning
-                member.Password = null;
-                return member;
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
-        }
-
-        public async Task<IEnumerable<User>> GetAll()
-        {
-            return await _unitOfWork.UserRepository.GetAll();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            member.Token = tokenHandler.WriteToken(token);
+            member.Password = null;
+            return member;
         }
 
         public async Task<User> GetUserById(int id)

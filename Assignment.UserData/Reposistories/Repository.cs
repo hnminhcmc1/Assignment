@@ -8,32 +8,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Assignment.UserData.Reposistories
 {
-    public class Repository<TEntity>:IRepository<TEntity> where TEntity:class
+    public class Repository<T>:IRepository<T> where T:class
     {
-        protected readonly DbContext Context;
+        protected readonly DbContext _context;
 
         public Repository(DbContext context)
         {
-            Context = context;
+            _context = context;
         }
-        public async Task<TEntity> Get(int id)
+        public async Task<T> Get(int id)
         {
-            return await Context.Set<TEntity>().FindAsync(id);
-        }
-
-        public async Task<IEnumerable<TEntity>> GetAll()
-        {
-            return await Context.Set<TEntity>().ToListAsync();
+            return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> expression)
+        public void Add(T t)
         {
-            return await Context.Set<TEntity>().Where(expression).ToListAsync();
-        }
-
-        public void Add(TEntity entity)
-        {
-            Context.Set<TEntity>().Add(entity);
+            _context.Set<T>().Add(t);
         }
     }
 }
