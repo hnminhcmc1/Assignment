@@ -5,7 +5,7 @@
 
 3. For Test API (Use Postman)
 
-- Register: [POST] http://localhost:56388/api/user/register
+- REGISTER: [POST] http://localhost:56388/api/user/register
 
 Example param : 
 {
@@ -18,18 +18,18 @@ Example param :
     "emailOptIn": "MinhHoang25@gmail.com"    
 }
 
-- Login: [POST] http://localhost:56388/api/user/login
+- LOGIN: [POST] http://localhost:56388/api/user/login
 
 Example param: {             
     "email": "MinhHoang25@gmail.com",
     "password": "1234"        
 }
 
-- Show profile: [GET] http://localhost:56388/api/user/{id}
+- SHOW PROFILE: [GET] http://localhost:56388/api/user/{id}
 
 Example: http://localhost:56388/api/user/1
 
-- Update User: [PUT] http://localhost:56388/api/user/edit
+- UPDATE USER: [PUT] http://localhost:56388/api/user/edit
 
 Example param:
 {
