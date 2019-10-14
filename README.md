@@ -15,15 +15,13 @@
     "mobileNumber": "12345",
     "gender": "Nam",
     "dob": "1995-12-25T00:00:00",
-    "emailOptIn": "MinhHoang25@gmail.com"    
-}
+    "emailOptIn": "MinhHoang25@gmail.com"}
 
 - LOGIN: [POST] http://localhost:56388/api/user/login
 
     Example param: {             
     "email": "MinhHoang25@gmail.com",
-    "password": "1234"        
-}
+    "password": "1234" }
 
 - SHOW PROFILE: [GET] http://localhost:56388/api/user/{id}
 
@@ -40,5 +38,4 @@
      "mobileNumber": "12345",
      "gender": "Nam",
      "dob": "1995-12-25T00:00:00",
-     "emailOptIn": "MinhHoang2@gmail.com",
-}
+     "emailOptIn": "MinhHoang2@gmail.com"}
