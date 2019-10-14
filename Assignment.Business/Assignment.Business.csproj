@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Assignment.Helpers\Assignment.Helpers.csproj" />
     <ProjectReference Include="..\Assignment.UserData\Assignment.UserData.csproj" />
   </ItemGroup>
 

@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Assignment.Business\Assignment.Business.csproj" />
+    <ProjectReference Include="..\Assignment.Helpers\Assignment.Helpers.csproj" />
     <ProjectReference Include="..\Assignment.UserData\Assignment.UserData.csproj" />
   </ItemGroup>
 

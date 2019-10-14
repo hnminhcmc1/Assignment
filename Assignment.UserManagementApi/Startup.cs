@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assignment.Business.Services;
+using Assignment.Helpers;
 using Assignment.UserData.Contexts;
 using Assignment.UserData.Reposistories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -35,8 +36,10 @@ namespace Assignment.UserManagementApi
             services.AddDbContext<UserDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
-
-            var key = Encoding.ASCII.GetBytes("THIS_IS_JWT_SECRET_KEY");
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<Appsettings>(appSettingsSection);
+            var appSettings = appSettingsSection.Get<Appsettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
