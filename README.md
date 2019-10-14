@@ -20,9 +20,7 @@ Example param :
 
 - Login: [POST] http://localhost:56388/api/user/login
 
-Example param:
-
-{             
+Example param: {             
     "email": "MinhHoang25@gmail.com",
     "password": "1234"        
 }
