@@ -7,7 +7,7 @@
 
 - REGISTER: [POST] http://localhost:56388/api/user/register
 
-Example param : 
+    Example param : 
 {
     "name": "MinhHoang25",
     "email": "MinhHoang25@gmail.com",
@@ -20,18 +20,18 @@ Example param :
 
 - LOGIN: [POST] http://localhost:56388/api/user/login
 
-Example param: {             
+    Example param: {             
     "email": "MinhHoang25@gmail.com",
     "password": "1234"        
 }
 
 - SHOW PROFILE: [GET] http://localhost:56388/api/user/{id}
 
-Example: http://localhost:56388/api/user/1
+    Example: http://localhost:56388/api/user/1
 
 - UPDATE USER: [PUT] http://localhost:56388/api/user/edit
 
-Example param:
+    Example param:
 {
      "id": 1,
      "name": "MinhHoang65",
