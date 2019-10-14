@@ -61,7 +61,7 @@ namespace Assignment.UserManagementApi.Controllers
         }
         // POST api/user/authenticate
         [AllowAnonymous]
-        [HttpPost("authenticate")]
+        [HttpPost("login")]
         public async Task<IActionResult> Authenticate(Login login)
         {
             var user = await _userService.Authenticate(login.Email, login.Password);
