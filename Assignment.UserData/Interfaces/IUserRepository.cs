@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Assignment.UserData.Models;
 
-namespace Assignment.UserData.Reposistories
+namespace Assignment.UserData.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {

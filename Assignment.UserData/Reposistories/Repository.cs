@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Assignment.UserData.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Assignment.UserData.Reposistories

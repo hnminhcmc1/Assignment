@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Assignment.Helpers;
+using Assignment.UserData.Interfaces;
 using Assignment.UserData.Models;
 using Assignment.UserData.Reposistories;
 using Microsoft.Extensions.Options;

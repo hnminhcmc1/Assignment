@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assignment.UserData.Contexts;
+using Assignment.UserData.Interfaces;
 using Assignment.UserData.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,20 +12,20 @@ namespace Assignment.UserData.Reposistories
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-        private readonly UserDbContext _context;
-        public UserRepository(UserDbContext context) : base(context)
+        private readonly UserDbContext _userDbContext;
+        public UserRepository(UserDbContext userDbContext) : base(userDbContext)
         {
-            _context = context;
+            _userDbContext = userDbContext;
         }
 
         public async Task<User> FindByEmailAndPassword(string email,string password)
         {
-            return await _context.Users.SingleOrDefaultAsync(s => s.Email == email && s.Password == password);
+            return await _userDbContext.Users.SingleOrDefaultAsync(s => s.Email == email && s.Password == password);
         }
 
         public bool CheckExistUser(string email,string name)
         {
-            return _context.Users.Any(s => s.Email == email && s.Name == name);
+            return _userDbContext.Users.Any(s => s.Email == email && s.Name == name);
         }
     }
 }
