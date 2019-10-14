@@ -25,7 +25,7 @@ namespace Assignment.UserData.Reposistories
 
         public bool CheckExistUser(string email,string name)
         {
-            return _userDbContext.Users.Any(s => s.Email == email && s.Name == name);
+            return _userDbContext.Users.Any(s => s.Email == email || s.Name == name);
         }
     }
 }
